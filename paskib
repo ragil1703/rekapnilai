@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekapan Nilai</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            cursor: pointer;
+        }
+
+        input[type="text"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rekapan Nilai</h1>
+    <input type="text" id="searchInput" placeholder="Cari berdasarkan nama sekolah...">
+    <table id="rekapanTable">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Sekolah</th>
+                <th>Perwira</th>
+                <th>Pemimpin</th>
+                <th>MC</th>
+                <th>Danton</th>
+                <th>Danpas</th>
+                <th>Pengibar</th>
+                <th>Pasukan</th>
+                <th>Formasi</th>
+                <th>Dirigen</th>
+                <th>Pembina Upacara</th>
+                <th>UUD</th>
+                <th>Doa</th>
+                <th>Pancasila</th>
+                <th>Pengurangan Nilai</th>
+                <th>Total Akhir</th>
+                <th>Rank</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data akan ditambahkan melalui JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        const data = [
+            {"No": 1, "Nama Sekolah": "SMP NEGERI 3 SUNGAI RAYA", "Perwira": 868, "Pemimpin": 917, "MC": 662, "Danton": 651, "Danpas": 664, "Pengibar": 808, "Pasukan": 678, "Formasi": 673, "Dirigen": 658, "Pembina Upacara": 902, "UUD": 661, "Doa": 656, "Pancasila": 425, "Pengurangan Nilai": 20, "Total Akhir": 9203, "Rank": 4},
+            {"No": 2, "Nama Sekolah": "SMP NEGERI 03 PONTIANAK", "Perwira": 874, "Pemimpin": 912, "MC": 682, "Danton": 658, "Danpas": 670, "Pengibar": 735, "Pasukan": 660, "Formasi": 670, "Dirigen": 646, "Pembina Upacara": 912, "UUD": 635, "Doa": 644, "Pancasila": 427, "Pengurangan Nilai": 20, "Total Akhir": 9105, "Rank": 9},
+            {"No": 3, "Nama Sekolah": "SMP NEGERI 19 PONTIANAK", "Perwira": 857, "Pemimpin": 910, "MC": 681, "Danton": 649, "Danpas": 685, "Pengibar": 868, "Pasukan": 649, "Formasi": 651, "Dirigen": 673, "Pembina Upacara": 898, "UUD": 604, "Doa": 654, "Pancasila": 440, "Pengurangan Nilai": 110, "Total Akhir": 9109, "Rank": 8},
+            {"No": 4, "Nama Sekolah": "SMP NEGERI 13 PONTIANAK", "Perwira": 866, "Pemimpin": 884, "MC": 688, "Danton": 649, "Danpas": 626, "Pengibar": 875, "Pasukan": 648, "Formasi": 662, "Dirigen": 635, "Pembina Upacara": 831, "UUD": 633, "Doa": 646, "Pancasila": 443, "Pengurangan Nilai": 130, "Total Akhir": 8956, "Rank": 10}
+        ];
+
+        const tableBody = document.querySelector("#rekapanTable tbody");
+
+        function renderTable(data) {
+            tableBody.innerHTML = "";
+            data.forEach(item => {
+                const row = document.createElement("tr");
+                for (const key in item) {
+                    const cell = document.createElement("td");
+                    cell.textContent = item[key];
+                    row.appendChild(cell);
+                }
+                tableBody.appendChild(row);
+            });
+        }
+
+        document.getElementById("searchInput").addEventListener("input", function () {
+            const searchValue = this.value.toLowerCase();
+            const filteredData = data.filter(item =>
+                item["Nama Sekolah"].toLowerCase().includes(searchValue)
+            );
+            renderTable(filteredData);
+        });
+
+        renderTable(data);
+    </script>
+</body>
+</html>
